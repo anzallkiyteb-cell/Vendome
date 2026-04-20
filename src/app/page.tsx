@@ -384,7 +384,7 @@ export default function Home() {
           >
             Nous avons l'immense plaisir de vous convier à célébrer,{' '}
             <strong className="text-[#8a6f47] font-medium tracking-wide">
-              une année de beauté, de bien-être et de moments privilégiés
+              une année de beauté, de bien-être et d'instants privilégiés
             </strong>.
             Laissez-vous porter par un moment raffiné, pensé avec passion pour nos très chères clientes.
           </motion.p>
