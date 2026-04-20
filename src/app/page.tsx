@@ -338,9 +338,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 3.7, duration: 1 }}
           >
-            <span className="relative px-2 sm:px-3.5 before:absolute before:right-full before:top-1/2 before:w-[20px] sm:before:w-[30px] before:h-px before:bg-[#b89969] after:absolute after:left-full after:top-1/2 after:w-[20px] sm:after:w-[30px] after:h-px after:bg-[#b89969]">
-              Une soirée d'exception
-            </span>
+
           </motion.div>
 
           <h1 className="font-italian text-[clamp(56px,11vw,160px)] font-normal text-[#2a241d] leading-[0.95] tracking-tight mb-5">
@@ -477,44 +475,6 @@ export default function Home() {
             nous comptons sur votre présence »
           </motion.p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 bg-[#b89969]/20 border border-[#b89969]/20">
-            {[
-              { icon: Calendar, k: 'La date', v: '25 Avril 2026', s: 'Samedi' },
-              { icon: Clock, k: 'L\'heure', v: '14 h 00', s: 'Accueil & cocktail' },
-              { icon: MapPin, k: 'Le lieu', v: 'Vendôme Spa', s: 'Les Berges du Lac 2, Tunis', link: 'https://maps.app.goo.gl/2zSc7PeLGi25BNXLA?g_st=ic' },
-              { icon: Star, k: 'Le dress code', v: 'Chic & Élégant', s: 'Tenue de soirée' },
-            ].map((item, i) => (
-              <motion.div
-                key={item.k}
-                className="bg-[#2a241d] relative group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                viewport={{ once: true }}
-              >
-                {item.link ? (
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block p-12 text-center hover:bg-[#b89969]/10 transition-colors h-full w-full"
-                  >
-                    <item.icon className="w-12 h-12 mx-auto mb-6 stroke-[#d4b98a] stroke-[1.2]" />
-                    <div className="text-[10px] tracking-[0.4em] text-[#d4b98a] uppercase mb-3.5">{item.k}</div>
-                    <div className="font-italian text-2xl text-[#f6f1ea] mb-1.5 leading-tight">{item.v}</div>
-                    <div className="font-cormorant italic text-[15px] text-[#f6f1ea]/60">{item.s}</div>
-                  </a>
-                ) : (
-                  <div className="p-12 text-center h-full w-full">
-                    <item.icon className="w-12 h-12 mx-auto mb-6 stroke-[#d4b98a] stroke-[1.2]" />
-                    <div className="text-[10px] tracking-[0.4em] text-[#d4b98a] uppercase mb-3.5">{item.k}</div>
-                    <div className="font-italian text-2xl text-[#f6f1ea] mb-1.5 leading-tight">{item.v}</div>
-                    <div className="font-cormorant italic text-[15px] text-[#f6f1ea]/60">{item.s}</div>
-                  </div>
-                )}
-              </motion.div>
-            ))}
-          </div>
 
           {/* Marquee Ribbon */}
           {/* Au Programme Section */}
@@ -527,7 +487,7 @@ export default function Home() {
             >
               Au Programme
             </motion.div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 max-w-[900px] mx-auto text-left">
               {[
                 { title: "Feed back", desc: "Une année de moments privilégiés chez Vendôme" },
@@ -536,7 +496,7 @@ export default function Home() {
                 { title: "Diagnostic Capillaire", desc: "Bénéficiez d'un diagnostic personnalisé offert" },
                 { title: "Nouveautés Soin Visage", desc: "Présentation de nos nouveaux produits exclusifs" },
                 { title: "Démonstration Live", desc: "Démonstration d'un soin de visage haute performance" },
-                { title: "Diagnostic Dermatologique", desc: "Consultation et diagnostic gratuit sur place" },
+                { title: "Diagnostic Dermatologique", desc: "Consultation et diagnostic gratuits sur place" },
                 { title: "Tirage de Tombola", desc: "Gagnez des lots d'exception, dont un Hammam Aaroussa complet pour 10 personnes (Tijanya, buffet, hammam...)" },
               ].map((item, i) => (
                 <motion.div
