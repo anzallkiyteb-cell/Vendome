@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, Clock, MapPin, Star, Camera, PhoneCall, ArrowRight } from 'lucide-react';
+import { Calendar, Clock, MapPin, Star, Camera, PhoneCall, ArrowRight, Mouse } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 // --- Components ---
@@ -190,6 +190,7 @@ const Countdown = () => {
 export default function Home() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [stage, setStage] = useState<'welcome' | 'fireworks' | 'loading' | 'site'>('welcome');
+  const [scrolled, setScrolled] = useState(false);
 
   const handleStart = () => {
     const audio = new Audio('/audio/fireworks.mp3');
@@ -213,8 +214,15 @@ export default function Home() {
         y: (e.clientY / window.innerHeight - 0.5),
       });
     };
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
@@ -427,21 +435,35 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* Scroll Hint */}
-        <motion.div
-          className="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2.5 text-[#8a6f47] z-20 hidden sm:flex"
-          animate={{ opacity: [0.3, 1, 0.3] }}
-          transition={{ delay: 5.8, duration: 1.5, repeat: Infinity }}
-        >
-          <div className="text-[9px] tracking-[0.5em] uppercase [writing-mode:vertical-rl]">Découvrir</div>
-          <div className="w-px h-10 bg-gradient-to-b from-[#b89969] to-transparent relative">
-            <motion.div
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-[3px] h-[3px] bg-[#b89969] rounded-full"
-              animate={{ top: ['0px', '40px'], opacity: [1, 0] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: "easeIn" }}
-            />
-          </div>
-        </motion.div>
+      {/* Scroll Hint */}
+      <AnimatePresence>
+        {stage === 'site' && !scrolled && (
+          <motion.div
+            className="fixed bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3 text-[#d4b98a] z-[100] pointer-events-none bg-[#2a241d]/80 backdrop-blur-md px-6 py-3 rounded-full border border-[#b89969]/30 shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 1 }}
+          >
+            <div className="relative flex flex-col items-center">
+              <Mouse className="w-5 h-5 opacity-90" />
+              <motion.div
+                className="w-0.5 h-1.5 bg-[#d4b98a] rounded-full absolute top-1.5"
+                animate={{
+                  y: [0, 5, 0],
+                  opacity: [0, 1, 0]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            </div>
+            <div className="font-inter text-[10px] tracking-[0.2em] uppercase pt-0.5 whitespace-nowrap">Défilez</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       </section>
 
       {/* DETAILS SECTION */}
