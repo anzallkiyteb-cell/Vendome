@@ -420,7 +420,7 @@ export default function Home() {
               </span>
               <div className="absolute inset-0 bg-[#8a6f47] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
             </a>
-            <a href="https://instagram.com/vendome_beauty_spa" target="_blank" className="group relative inline-flex items-center py-4 px-9 border border-[#b89969] text-[#2a241d] text-[11px] tracking-[0.3em] uppercase overflow-hidden">
+            <a href="https://wa.me/+21623851338" target="_blank" className="group relative inline-flex items-center py-4 px-9 border border-[#b89969] text-[#2a241d] text-[11px] tracking-[0.3em] uppercase overflow-hidden">
               <span className="relative z-10 group-hover:text-[#f6f1ea] transition-colors">Confirmer ma présence</span>
               <div className="absolute inset-0 bg-[#2a241d] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
             </a>
@@ -480,13 +480,22 @@ export default function Home() {
           {/* Au Programme Section */}
           <div className="mt-32">
             <motion.div
-              className="text-center text-[10px] tracking-[0.5em] text-[#d4b98a] uppercase mb-12"
+              className="text-center text-[10px] tracking-[0.5em] text-[#d4b98a] uppercase mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
               Au Programme
             </motion.div>
+            <motion.h3
+              className="text-center font-italian text-[clamp(24px,4vw,42px)] font-bold mb-12 tracking-wider uppercase drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)] bg-clip-text text-transparent bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] via-[#F7B500] to-[#B38728]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              Lancement d'application web Vendôme
+            </motion.h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 max-w-[900px] mx-auto text-left">
               {[
