@@ -382,7 +382,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 4.7, duration: 1.2 }}
           >
-            Nous avons l'immense plaisir de vous convier à célébrer,{' '}
+            Nous avons l'immense plaisir de vous convier à célébrer{' '}
             <strong className="text-[#8a6f47] font-medium tracking-wide">
               une année de beauté, de bien-être et d'instants privilégiés
             </strong>.
@@ -494,8 +494,7 @@ export default function Home() {
               transition={{ delay: 0.1 }}
               viewport={{ once: true }}
             >
-              Lancement d'application web Vendôme
-            </motion.h3>
+              Lancement de l’application web vendôme            </motion.h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 max-w-[900px] mx-auto text-left">
               {[
