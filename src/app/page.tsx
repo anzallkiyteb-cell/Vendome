@@ -415,7 +415,7 @@ export default function Home() {
           >
             <a href="#details" className="group relative inline-flex items-center gap-3 py-4 px-9 bg-[#2a241d] text-[#f6f1ea] border border-[#b89969] text-[11px] tracking-[0.3em] uppercase transition-colors overflow-hidden">
               <span className="relative z-10 flex items-center gap-3">
-                Découvrir la soirée
+                Découvrir l'evenement
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </span>
               <div className="absolute inset-0 bg-[#8a6f47] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
@@ -492,7 +492,7 @@ export default function Home() {
               {[
                 { title: "Feed back", desc: "Une année de moments privilégiés chez Vendôme" },
                 { title: "Présentation des services", desc: "Découvrez l'univers et l'excellence de nos soins" },
-                { title: "L'Équipe d'Excellence", desc: "Présentation des compétences et savoir-faire de notre équipe" },
+                { title: "Présentation de l'Équipe", desc: "Présentation des compétences et savoir-faire de notre équipe" },
                 { title: "Diagnostic Capillaire", desc: "Bénéficiez d'un diagnostic personnalisé offert" },
                 { title: "Nouveautés Soin Visage", desc: "Présentation de nos nouveaux produits exclusifs" },
                 { title: "Démonstration Live", desc: "Démonstration d'un soin de visage haute performance" },
