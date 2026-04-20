@@ -15,7 +15,7 @@ const FireworkOverlay = ({ onComplete }: { onComplete: () => void }) => {
 
     const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
 
-    const interval: any = setInterval(function() {
+    const interval: any = setInterval(function () {
       const timeLeft = animationEnd - Date.now();
 
       if (timeLeft <= 0) {
@@ -65,32 +65,32 @@ const LoadingCurtain = ({ show }: { show: boolean }) => (
         exit={{ clipPath: 'inset(0 0 100% 0)' }}
         transition={{ duration: 1.6, ease: [0.76, 0, 0.24, 1] }}
       >
-    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(184,153,105,0.15),transparent_60%)]" />
-    <motion.span
-      className="font-italian text-[clamp(40px,8vw,120px)] text-[#b89969] relative tracking-[0.1em]"
-      initial={{ opacity: 0, y: 40, scale: 0.95, letterSpacing: '0.3em' }}
-      animate={{
-        opacity: [0, 1, 0],
-        y: [40, 0, 0],
-        scale: [0.95, 1, 1.05],
-        letterSpacing: ['0.3em', '0.1em', '0.1em'],
-      }}
-      transition={{
-        times: [0, 0.4, 1],
-        duration: 3,
-        ease: "easeOut",
-        delay: 0.3
-      }}
-    >
-      Vendôme
-      <motion.div
-        className="absolute left-1/2 -bottom-5 h-px bg-[#b89969] -translate-x-1/2"
-        initial={{ width: 0 }}
-        animate={{ width: '80%' }}
-        transition={{ delay: 0.8, duration: 1.4, ease: [0.76, 0, 0.24, 1] }}
-      />
-    </motion.span>
-    </motion.div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(184,153,105,0.15),transparent_60%)]" />
+        <motion.span
+          className="font-italian text-[clamp(40px,8vw,120px)] text-[#b89969] relative tracking-[0.1em]"
+          initial={{ opacity: 0, y: 40, scale: 0.95, letterSpacing: '0.3em' }}
+          animate={{
+            opacity: [0, 1, 0],
+            y: [40, 0, 0],
+            scale: [0.95, 1, 1.05],
+            letterSpacing: ['0.3em', '0.1em', '0.1em'],
+          }}
+          transition={{
+            times: [0, 0.4, 1],
+            duration: 3,
+            ease: "easeOut",
+            delay: 0.3
+          }}
+        >
+          Vendôme
+          <motion.div
+            className="absolute left-1/2 -bottom-5 h-px bg-[#b89969] -translate-x-1/2"
+            initial={{ width: 0 }}
+            animate={{ width: '80%' }}
+            transition={{ delay: 0.8, duration: 1.4, ease: [0.76, 0, 0.24, 1] }}
+          />
+        </motion.span>
+      </motion.div>
     )}
   </AnimatePresence>
 );
@@ -189,43 +189,19 @@ const Countdown = () => {
 
 export default function Home() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [stage, setStage] = useState<'fireworks' | 'loading' | 'site'>('fireworks');
+  const [stage, setStage] = useState<'welcome' | 'fireworks' | 'loading' | 'site'>('welcome');
 
-  useEffect(() => {
+  const handleStart = () => {
     const audio = new Audio('/audio/fireworks.mp3');
     audio.volume = 1.0;
-    
-    // Attempt immediate play
-    audio.play().catch(err => {
-      console.log("Autoplay blocked, waiting for interaction:", err);
-    });
-
-    const startCelebrationFallback = () => {
-      audio.play().catch(() => {});
-      window.removeEventListener('click', startCelebrationFallback);
-      window.removeEventListener('touchstart', startCelebrationFallback);
-    };
-
-    window.addEventListener('click', startCelebrationFallback);
-    window.addEventListener('touchstart', startCelebrationFallback);
-    
-    // Auto-advance fireworks stage
-    const timer = setTimeout(() => {
-      setStage('loading');
-    }, 4500); 
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('click', startCelebrationFallback);
-      window.removeEventListener('touchstart', startCelebrationFallback);
-    };
-  }, []);
+    audio.play().catch(() => { });
+    setStage('fireworks');
+    setTimeout(() => setStage('loading'), 4500);
+  };
 
   useEffect(() => {
     if (stage === 'loading') {
-      const timer = setTimeout(() => {
-        setStage('site');
-      }, 3500);
+      const timer = setTimeout(() => setStage('site'), 3500);
       return () => clearTimeout(timer);
     }
   }, [stage]);
@@ -244,9 +220,46 @@ export default function Home() {
   return (
     <main className="min-h-screen relative overflow-x-hidden selection:bg-[#b89969] selection:text-[#fbf8f3]">
       <AnimatePresence>
+        {stage === 'welcome' && (
+          <motion.div
+            key="welcome"
+            className="fixed inset-0 z-[4000] bg-[#2a241d] flex flex-col items-center justify-center"
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(184,153,105,0.15),transparent_60%)]" />
+            <motion.div
+              className="text-center relative z-10 px-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+            >
+              <div className="font-inter text-[10px] tracking-[0.5em] text-[#b89969] uppercase mb-6">
+                Vendôme Beauty & Spa
+              </div>
+              <h1 className="font-italian text-[clamp(36px,7vw,90px)] text-[#f6f1ea] tracking-wide mb-3 leading-tight">
+                Joyeux Anniversaire
+              </h1>
+              <p className="font-cormorant italic text-[clamp(16px,2vw,22px)] text-[#d4b98a] mb-12 opacity-80">
+                Une soirée d'exception vous attend
+              </p>
+              <motion.button
+                onClick={handleStart}
+                className="relative inline-flex items-center gap-3 py-4 px-12 border border-[#b89969] text-[#f6f1ea] font-inter text-[11px] tracking-[0.4em] uppercase overflow-hidden group"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <span className="relative z-10">Entrer</span>
+                <div className="absolute inset-0 bg-[#b89969] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
         {stage === 'fireworks' && <FireworkOverlay onComplete={() => setStage('loading')} />}
       </AnimatePresence>
-      
+
       {stage !== 'site' && <LoadingCurtain show={stage === 'loading'} />}
       {stage === 'site' && <FallingPetals />}
 
@@ -468,21 +481,37 @@ export default function Home() {
             {[
               { icon: Calendar, k: 'La date', v: '25 Avril 2026', s: 'Samedi soir' },
               { icon: Clock, k: 'L\'heure', v: '14 h 00', s: 'Accueil & cocktail' },
-              { icon: MapPin, k: 'Le lieu', v: 'Vendôme Spa', s: 'Les Berges du Lac 2, Tunis' },
+              { icon: MapPin, k: 'Le lieu', v: 'Vendôme Spa', s: 'Les Berges du Lac 2, Tunis', link: 'https://maps.app.goo.gl/2zSc7PeLGi25BNXLA?g_st=ic' },
               { icon: Star, k: 'Le dress code', v: 'Chic & Élégant', s: 'Tenue de soirée' },
             ].map((item, i) => (
               <motion.div
                 key={item.k}
-                className="bg-[#2a241d] p-12 text-center hover:bg-[#b89969]/10 transition-colors relative group"
+                className="bg-[#2a241d] relative group"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 viewport={{ once: true }}
               >
-                <item.icon className="w-12 h-12 mx-auto mb-6 stroke-[#d4b98a] stroke-[1.2]" />
-                <div className="text-[10px] tracking-[0.4em] text-[#d4b98a] uppercase mb-3.5">{item.k}</div>
-                <div className="font-italian text-2xl text-[#f6f1ea] mb-1.5 leading-tight">{item.v}</div>
-                <div className="font-cormorant italic text-[15px] text-[#f6f1ea]/60">{item.s}</div>
+                {item.link ? (
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block p-12 text-center hover:bg-[#b89969]/10 transition-colors h-full w-full"
+                  >
+                    <item.icon className="w-12 h-12 mx-auto mb-6 stroke-[#d4b98a] stroke-[1.2]" />
+                    <div className="text-[10px] tracking-[0.4em] text-[#d4b98a] uppercase mb-3.5">{item.k}</div>
+                    <div className="font-italian text-2xl text-[#f6f1ea] mb-1.5 leading-tight">{item.v}</div>
+                    <div className="font-cormorant italic text-[15px] text-[#f6f1ea]/60">{item.s}</div>
+                  </a>
+                ) : (
+                  <div className="p-12 text-center h-full w-full">
+                    <item.icon className="w-12 h-12 mx-auto mb-6 stroke-[#d4b98a] stroke-[1.2]" />
+                    <div className="text-[10px] tracking-[0.4em] text-[#d4b98a] uppercase mb-3.5">{item.k}</div>
+                    <div className="font-italian text-2xl text-[#f6f1ea] mb-1.5 leading-tight">{item.v}</div>
+                    <div className="font-cormorant italic text-[15px] text-[#f6f1ea]/60">{item.s}</div>
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>

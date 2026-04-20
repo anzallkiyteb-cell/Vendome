@@ -23,6 +23,7 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   title: "Vendôme Beauty & Spa — Anniversaire",
   description: "Célébrez avec nous l'anniversaire de Vendôme Beauty & Spa. Lac 2, Tunis. 25 Avril.",
+  icons: { icon: '/favicon.ico' },
 };
 
 export default function RootLayout({
