@@ -241,7 +241,7 @@ export default function Home() {
                 Joyeux Anniversaire
               </h1>
               <p className="font-cormorant italic text-[clamp(16px,2vw,22px)] text-[#d4b98a] mb-12 opacity-80">
-                Une soirée d'exception vous attend
+                Un moment d'exception vous attend
               </p>
               <motion.button
                 onClick={handleStart}
@@ -319,7 +319,7 @@ export default function Home() {
           transition={{ delay: 3.7, duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
         >
           <div className="font-inter text-[8px] sm:text-[10px] tracking-[0.3em] sm:tracking-[0.5em] text-[#8a6f47] uppercase mb-1.5">
-            Beauté · Élégance · Raffinement
+            Beauté · Élégance · bien être
           </div>
           <div className="flex items-center justify-center gap-2 sm:gap-3.5">
             <div className="w-6 sm:w-10 h-px bg-gradient-to-r from-transparent to-[#b89969]" />
@@ -384,11 +384,11 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 4.7, duration: 1.2 }}
           >
-            Nous avons l'immense plaisir de vous convier à célébrer, en notre compagnie,{' '}
+            Nous avons l'immense plaisir de vous convier à célébrer,{' '}
             <strong className="text-[#8a6f47] font-medium tracking-wide">
               une année de beauté, de bien-être et de moments privilégiés
             </strong>.
-            Laissez-vous porter par une soirée raffinée, pensée avec passion pour nos très chères clientes.
+            Laissez-vous porter par un moment raffiné, pensé avec passion pour nos très chères clientes.
           </motion.p>
 
           <Countdown />
@@ -465,7 +465,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            Une soirée <span className="font-cormorant italic text-[#d4b98a]">inoubliable</span>
+            Un moment  <span className="font-cormorant italic text-[#d4b98a]">inoubliable</span>
           </motion.h2>
           <motion.p
             className="text-center font-cormorant italic text-[clamp(17px,1.8vw,21px)] text-[#f6f1ea]/70 max-w-[600px] mx-auto mb-20 leading-relaxed"
@@ -474,12 +474,12 @@ export default function Home() {
             viewport={{ once: true }}
           >
             « Un an déjà… que Vendôme sublime votre beauté. Pour fêter cette première étoile,
-            nous vous réservons une expérience aussi raffinée que chaleureuse. »
+            nous comptons sur votre présence »
           </motion.p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 bg-[#b89969]/20 border border-[#b89969]/20">
             {[
-              { icon: Calendar, k: 'La date', v: '25 Avril 2026', s: 'Samedi soir' },
+              { icon: Calendar, k: 'La date', v: '25 Avril 2026', s: 'Samedi' },
               { icon: Clock, k: 'L\'heure', v: '14 h 00', s: 'Accueil & cocktail' },
               { icon: MapPin, k: 'Le lieu', v: 'Vendôme Spa', s: 'Les Berges du Lac 2, Tunis', link: 'https://maps.app.goo.gl/2zSc7PeLGi25BNXLA?g_st=ic' },
               { icon: Star, k: 'Le dress code', v: 'Chic & Élégant', s: 'Tenue de soirée' },
@@ -517,8 +517,46 @@ export default function Home() {
           </div>
 
           {/* Marquee Ribbon */}
+          {/* Au Programme Section */}
+          <div className="mt-32">
+            <motion.div
+              className="text-center text-[10px] tracking-[0.5em] text-[#d4b98a] uppercase mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              Au Programme
+            </motion.div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 max-w-[900px] mx-auto text-left">
+              {[
+                { title: "Feed back", desc: "Une année de moments privilégiés chez Vendôme" },
+                { title: "Présentation des services", desc: "Découvrez l'univers et l'excellence de nos soins" },
+                { title: "L'Équipe d'Excellence", desc: "Présentation des compétences et savoir-faire de notre équipe" },
+                { title: "Diagnostic Capillaire", desc: "Bénéficiez d'un diagnostic personnalisé offert" },
+                { title: "Nouveautés Soin Visage", desc: "Présentation de nos nouveaux produits exclusifs" },
+                { title: "Démonstration Live", desc: "Démonstration d'un soin de visage haute performance" },
+                { title: "Diagnostic Dermatologique", desc: "Consultation et diagnostic gratuit sur place" },
+                { title: "Tirage de Tombola", desc: "Gagnez des lots d'exception, dont un Hammam Aaroussa complet pour 10 personnes (Tijanya, buffet, hammam...)" },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  className="group relative pl-8 pb-4 border-b border-[#b89969]/10"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <span className="absolute left-0 top-1 text-[#d4b98a] text-lg leading-none font-italian">0{i + 1}</span>
+                  <h3 className="font-italian text-xl text-[#f6f1ea] mb-1 group-hover:text-[#d4b98a] transition-colors">{item.title}</h3>
+                  <p className="font-cormorant italic text-[#f6f1ea]/60 text-[15px] leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
           <motion.div
-            className="mt-20 py-6 border-y border-[#b89969]/25 overflow-hidden"
+            className="mt-32 py-6 border-y border-[#b89969]/25 overflow-hidden"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
